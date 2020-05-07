@@ -1,0 +1,228 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="Knowledge base" Height="900" Width="1200" Top="20" Left="200">
+    <Border Padding="10">
+        <TabControl >
+            <TabItem x:Name="Statistics">
+                <TabItem.Header>
+                    <TextBlock Margin="3">Statistics</TextBlock>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <StackPanel Orientation="Vertical">
+                        <ListView Name="ListView">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="350" Header="Name" DisplayMemberBinding="{Binding Key}"/>
+                                    <GridViewColumn Width="350" Header="Count" DisplayMemberBinding="{Binding Value}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <ListView Name="ListViewNamespace">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="350" Header="Prefix" DisplayMemberBinding="{Binding Key}"/>
+                                    <GridViewColumn Width="350" Header="Namespace" DisplayMemberBinding="{Binding Value}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem x:Name="addTab">
+                <TabItem.Header>
+                    <TextBlock Margin="3">Add</TextBlock>
+                </TabItem.Header>
+                <TabItem.Content>
+
+
+                    <StackPanel Orientation="Vertical">
+
+                        <DataGrid x:Name="triplesGrid1" Height="600" AutoGenerateColumns="False" HorizontalGridLinesBrush="DarkGray"
+                                  RowBackground="LightGray" AlternatingRowBackground="White" IsReadOnly="True" >
+                            <!--SelectionChanged="TriplesGrid1_OnSelected"-->
+
+
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Subject" Binding="{Binding Item1}" Width="*" />
+                                <DataGridTextColumn Header="Predicate" Binding="{Binding Item2}" Width="*" />
+                                <DataGridTextColumn Header="Object" Binding="{Binding Item3}" Width="*" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <TabControl Margin="10" >
+                            <TabItem x:Name="addMainClass" UseLayoutRounding="True" BorderThickness="0 0 0 2"  Margin="2 0">
+                                <TabItem.Header>
+                                    <TextBlock Margin="3">Add main class</TextBlock>
+                                </TabItem.Header>
+                                <TabItem.Content>
+
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Insert new class name" Margin="5"/>
+                                        <TextBox  x:Name="SubjectMainClass" Grid.Column="0" Grid.Row="1" Margin="5" Padding="5"/>
+
+                                        <Button x:Name="AddMainClassButton"   Grid.Column="2" Grid.Row="0" Height="Auto" Padding="10" Margin="5" Content="Add" Click="AddButton_OnClick" />
+                                        <Button x:Name="ResetMainClassButton" Grid.Column="2" Grid.Row="1" Height="Auto" Padding="10"  Margin="5" Content="Reset" Click="ResetButton_OnClick" />
+
+                                    </Grid>
+                                </TabItem.Content>
+                            </TabItem>
+                            <TabItem x:Name="AddSubClass" UseLayoutRounding="True" BorderThickness="0 0 0 2"  Margin="2 0">
+                                <TabItem.Header>
+                                    <TextBlock Margin="3">Add subclass</TextBlock>
+                                </TabItem.Header>
+                                <TabItem.Content>
+
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Subclass name" Margin="5"/>
+                                        <TextBox x:Name="SubjectSubClass" Grid.Column="0" Grid.Row="1" Margin="5" Padding="5"/>
+
+
+
+
+                                        <TextBlock Grid.Column="1" Grid.Row="0" Text="Base class name" Margin="5"/>
+                                        <ComboBox x:Name="ObjectSubClass" Grid.Column="1" Grid.Row="1" Margin="5" Padding="5"/>
+
+
+                                        <Button x:Name="AddSubClassButton"  Grid.Column="2" Grid.Row="0" Height="Auto" Padding="10" Margin="5" Content="Add" Click="AddSubclassButton_OnClick" />
+                                        <Button x:Name="ResetSubClassButton" Grid.Column="2" Grid.Row="1" Height="Auto" Padding="10"  Margin="5" Content="Reset" Click="ResetSubclassButton_OnClick" />
+
+                                    </Grid>
+                                </TabItem.Content>
+                            </TabItem >
+                            <TabItem x:Name="AddIndivid" UseLayoutRounding="True" BorderThickness="0 0 0 2"  Margin="2 0">
+                                <TabItem.Header>
+                                    <TextBlock Margin="3">Add object of class</TextBlock>
+                                </TabItem.Header>
+                                <TabItem.Content>
+
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Object name" Margin="5"/>
+                                        <TextBox x:Name="SubjectIndivid" Grid.Column="0" Grid.Row="1" Margin="5" Padding="5"/>
+
+
+
+
+                                        <TextBlock Grid.Column="1" Grid.Row="0" Text="Base class name" Margin="5"/>
+                                        <ComboBox x:Name="ObjectClass" Grid.Column="1" Grid.Row="1" Margin="5" Padding="5"/>
+
+
+                                        <Button x:Name="AddIndividButton"  Grid.Column="2" Grid.Row="0" Height="Auto" Padding="10" Margin="5" Content="Add" Click="AddIndividButton_OnClick" />
+                                        <Button x:Name="ResetIndividButton" Grid.Column="2" Grid.Row="1" Height="Auto" Padding="10"  Margin="5" Content="Reset" Click="ResetIndividButton_OnClick" />
+
+                                    </Grid>
+                                </TabItem.Content>
+                            </TabItem >
+                            <TabItem x:Name="AddProperty" UseLayoutRounding="True" BorderThickness="0 0 0 2"  Margin="2 0">
+                                <TabItem.Header>
+                                    <TextBlock Margin="3">Add Property</TextBlock>
+                                </TabItem.Header>
+                                <TabItem.Content>
+
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Insert new property name" Margin="5"/>
+                                        <TextBox  x:Name="PropertySubject" Grid.Column="0" Grid.Row="1" Margin="5" Padding="5"/>
+
+                                        <Button x:Name="AddPropertyButton"  Grid.Column="1" Grid.Row="0" Height="Auto" Padding="10" Margin="5" Content="Add" Click="AddPropertyButton_OnClick" />
+                                        <Button x:Name="ResetPropertyButton"  Grid.Column="1" Grid.Row="1" Height="Auto" Padding="10"  Margin="5" Content="Reset" Click="ResetPropertyButton_OnClick" />
+
+                                    </Grid>
+                                </TabItem.Content>
+                            </TabItem >
+                            <TabItem x:Name="AddObject" UseLayoutRounding="True" BorderThickness="0 0 0 2"  Margin="2 0">
+                                <TabItem.Header>
+                                    <TextBlock Margin="3">Add object with property</TextBlock>
+                                </TabItem.Header>
+                                <TabItem.Content>
+
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Subject" Margin="5"/>
+                                        <ComboBox x:Name="PropTripleSubject" Grid.Column="0" Grid.Row="1" Margin="5" Padding="5" IsEditable="False" />
+
+
+                                        <TextBlock Grid.Column="1" Grid.Row="0" Text="Predicate" Margin="15 5"/>
+                                        <ComboBox x:Name="PropTriplePredicate" Grid.Column="1" Grid.Row="1" Margin="15 5" Padding="5"  IsEditable="False"/>
+
+                                        <TextBlock Grid.Column="2" Grid.Row="0" Text="Object" Margin="5"/>
+                                        <ComboBox x:Name="PropTripleObject" Grid.Column="2" Grid.Row="1" Margin="5" Padding="5" IsEditable="False"/>
+
+
+                                        <Button x:Name="AddPropTripleButton" Grid.Column="2" Grid.Row="2" Height="Auto" Padding="10" Margin="5" Content="Add" Click="AddPropTripleButton_OnClick" />
+                                        <Button x:Name="ResetPropTripleButton" Grid.Column="2" Grid.Row="3" Height="Auto" Padding="10"  Margin="5" Content="Reset" Click="ResetPropTripleButton_OnClick" />
+
+                                    </Grid>
+                                </TabItem.Content>
+                            </TabItem >
+                           
+                        </TabControl>
+            </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem x:Name="Log" UseLayoutRounding="True" BorderThickness="0 0 0 2"  Margin="2 0">
+                <TabItem.Header>
+                    <TextBlock Margin="3">LogTab</TextBlock>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <StackPanel Orientation="Vertical">
+                        <TextBox x:Name="TextBlock1" Width="600" Height="600"/>
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem >
+        </TabControl>
+    </Border>
+</Window>
